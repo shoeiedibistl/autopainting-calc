@@ -32,7 +32,7 @@ Functional:
 4. Calculation of the total price depending on the selected elements and checkboxes for each element;
 5. A custom checkbox on each list element, which increases the price of an individual list item and the total price when the checked value is set and returns the original price when the checked state is removed;
 6. When deleting a body element, the state of the checkbox is remembered, and when this element is subsequently selected, it returns to the previous state (checked === true || false);
-7. Switching all checkbox elements in the list of elements to the state checked === true || false when switching the main checkbox to the entire body;
+7. Switching all checkbox elements in the list of elements to the state checked === true || false when switching the main checkbox for the entire car body;
 8. Monitoring the main checkbox for the switching state of the remaining checkboxes (if all are selected, it automatically switches to the checked state, if not all are selected, it automatically switches to the state checked === false;
 9. Highlighting elements of the parts list when hovering over the corresponding part of the SVG image (car body part);
 10. Select all parts by clicking on the “Select entire body” button;
