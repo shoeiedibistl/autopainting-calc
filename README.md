@@ -3,7 +3,7 @@
 <b>Онлайн-калькулятор для расчета стоимости кузовного ремонта</b>
 
 Функционал: 
-1.	Подсвечивание элементов на странице (части SVG и HTML-блоки) при наведении на соответствующий раздел инструкции;
+1.	Подсвечивание элементов на странице (path SVG и HTML-блоки) при наведении на соответствующий раздел инструкции;
 2.	Создание списка выбранных элементов (добавление/удаление элементов списка при клике на соответствующий элемент на изображении); 
 3.	Установка или снятие состояния «выбран» одновременно для 3 элементов изображения при клике на любой из них (бампер передний и бампер задний в 3 проекциях) при добавлении в список выбранных элементов одного элемента (подсвечиваются три проекции бампера, в списке отображается «бампер передний/задний);
 4.	Кастомизированный чекбокс на каждом элементе списка, который увеличивает цену отдельного пункта списка и общую цену при значении checked и возвращает исходную цену при снятии состояния checked;
@@ -21,7 +21,7 @@
 <b>Online calculator for calculating the cost of car body repairs.</b>
 
 Functional:
-1. Highlighting elements on the page (SVG parts and HTML blocks) when you hover over the corresponding section of the instructions;
+1. Highlighting elements on the page (SVG paths and HTML blocks) when you hover over the corresponding section of the instructions;
 2. Creating a list of selected elements (adding/removing list elements by clicking on the corresponding element in the image);
 3. Setting or removing the “selected” state simultaneously for 3 image elements when you click on any of them (front bumper and rear bumper in 3 projections) when adding one element to the list of selected elements (three projections of the bumper are highlighted, is displayed in the list  “front/rear bumper”);
 4. A custom checkbox on each list element, which increases the price of an individual list item and the total price when the checked value is set and returns the original price when the checked state is removed;
