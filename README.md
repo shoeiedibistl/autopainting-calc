@@ -29,7 +29,7 @@ Functional:
 1. Highlighting elements on the page (SVG path and HTML blocks) when you hover over the corresponding section of the instruction;
 2. Creating a list of selected elements (adding/removing list elements by clicking on the corresponding element in the image);
 3. Setting or removing the “selected” state simultaneously for 3 image elements when you click on any of them (front bumper and rear bumper in 3 projections) when adding one element to the list of selected elements (three projections of the bumper are highlighted, is displayed in the list  “front/rear bumper”);
-4. Calculation of the total price depending on the selected elements and checkboxes for individual body elements;
+4. Calculation of the total price depending on the selected elements and checkboxes for each element;
 5. A custom checkbox on each list element, which increases the price of an individual list item and the total price when the checked value is set and returns the original price when the checked state is removed;
 6. When deleting a body element, the state of the checkbox is remembered, and when this element is subsequently selected, it returns to the previous state (checked === true || false);
 7. Switching all checkbox elements in the list of elements to the state checked === true || false when switching the main checkbox to the entire body;
