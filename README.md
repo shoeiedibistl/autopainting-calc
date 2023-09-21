@@ -16,6 +16,8 @@
 11.	Очистка всех деталей и сброс выбранных значений при клике на кнопку сброса.
 
 
+
+
 <b>Online calculator for calculating the cost of car body repairs.</b>
 
 Functional:
