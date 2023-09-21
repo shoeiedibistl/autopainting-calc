@@ -37,4 +37,4 @@ Functional:
 9. Highlighting elements of the parts list when hovering over the corresponding part of the SVG image (car body part);
 10. Select all parts by clicking on the “Select entire body” button;
 11. Clear all parts and reset selected values when you click on the reset button.
-12. A pop-up window prompting you to sign up for checkup in service when the user is inside the block with a calculator for a specified time. If he leaves the block before the popup timer expires, the timer is canceled and the popup is not shown.
+12. A popup prompting you to sign up for checkup in service when the user is inside the block with a calculator for a specified time. If he leaves the block before the popup timer expires, the timer is canceled and the popup is not shown.
