@@ -11,6 +11,7 @@ const instruction = document.getElementById("calc-instruction");
 checkAllDetailsBtn = document.querySelector(".checkAllDetailsBtn");
 clearAllDetailsBtn = document.querySelector(".clearAllDetailsBtn");
 const onHoverColor = "#66bb6a";
+const selectedColor = "#ddd654";
 let bumperProectionL;
 let bumperProectionF;
 let bumperProectionR;
@@ -356,36 +357,34 @@ function checkFullRepair(myArray) {
   fullRepair.checked = myArray.length === checkedCount;
 }
 
-document
-  .querySelector(".scheme-instruction")
-  .addEventListener("mouseover", function (event) {
+document.querySelector(".scheme-instruction").addEventListener("mouseover", function (event) {
     if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
-      document.getElementById("rf-fender").style.fill = "#ddd654";
-      document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__detail").style.color = "#ddd654";
+      document.getElementById("rf-fender").style.fill = selectedColor;
+      document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px selectedColor)";
+      document.getElementById("scheme-instruction__detail").style.color = selectedColor;
       return;
     }
     if (event.target.id === "scheme-instruction__add-repair" || event.target.id === "scheme-instruction__add-repair-img") {
-      document.getElementById("full-price-label").style.color = "#ddd654";
-      document.getElementById("slider round").style.backgroundColor = "#ddd654";
-      document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__add-repair").style.color = "#ddd654";
+      document.getElementById("full-price-label").style.color = selectedColor;
+      document.getElementById("slider round").style.backgroundColor = selectedColor;
+      document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px selectedColor)";
+      document.getElementById("scheme-instruction__add-repair").style.color = selectedColor;
       return;
     }
     if (event.target.id === "scheme-instruction__choose-all" || event.target.id === "scheme-instruction__choose-all-img") {
-      checkAllDetailsBtn.style.color = "#ddd654";
+      checkAllDetailsBtn.style.color = selectedColor;
       checkAllDetailsBtn.style.borderWidth = "2px";
-      checkAllDetailsBtn.style.borderColor = "#ddd654";
-      checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__choose-all").style.color = "#ddd654";
+      checkAllDetailsBtn.style.borderColor = selectedColor;
+      checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px selectedColor)";
+      document.getElementById("scheme-instruction__choose-all").style.color = selectedColor;
       return;
     }
     if (event.target.id === "scheme-instruction__clear-all" || event.target.id === "scheme-instruction__clear-all-img") {
-      clearAllDetailsBtn.style.color = "#ddd654";
+      clearAllDetailsBtn.style.color = selectedColor;
       clearAllDetailsBtn.style.borderWidth = "2px";
-      clearAllDetailsBtn.style.borderColor = "#ddd654";
+      clearAllDetailsBtn.style.borderColor = selectedColor;
       clearAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__clear-all").style.color = "#ddd654";
+      document.getElementById("scheme-instruction__clear-all").style.color = selectedColor;
       return;
     }
   });
