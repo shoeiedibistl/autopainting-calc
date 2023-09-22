@@ -351,9 +351,7 @@ function checkFullRepair(myArray) {
   fullRepair.checked = myArray.length === checkedCount;
 }
 
-document
-  .querySelector(".scheme-instruction")
-  .addEventListener("mouseover", function (event) {
+document.querySelector(".scheme-instruction").addEventListener("mouseover", function (event) {
     if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
       document.getElementById("rf-fender").style.fill = lightingColor;
       document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
