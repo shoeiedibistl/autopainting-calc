@@ -78,10 +78,7 @@ myDetails.forEach((detail) => {
 
 function addRemoveItem(myDetail) {
   if (myDetail.classList.contains("selected")) {
-    textItem =
-      myDetail.id.substr(2, 6) == "bumper"
-        ? myDetail.id.substr(0, 8)
-        : myDetail.id;
+    textItem = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id;
     addItem(textItem);
     myArray.push(textItem);
     return;
@@ -92,9 +89,7 @@ function addRemoveItem(myDetail) {
   }
 }
 
-document
-  .getElementById("full-body-addRepair-check")
-  .addEventListener("change", () => changeCheckbox(event.target));
+document.getElementById("full-body-addRepair-check").addEventListener("change", () => changeCheckbox(event.target));
 
 //Добавляем в список
 function addItem(textItem) {
@@ -136,18 +131,13 @@ function addItem(textItem) {
   }
 
   itemPrice = document.createElement("li");
-  itemPrice.textContent = `${getPaintingPrice(textItem).toLocaleString(
-    "ru"
-  )} р.`;
+  itemPrice.textContent = `${getPaintingPrice(textItem).toLocaleString("ru")} р.`;
   itemPrice.id = textItem + "-price";
   itemPriceList.append(itemPrice);
 }
 
 function removeItem(myDetail) {
-  textItem =
-    myDetail.id.substr(2, 6) == "bumper"
-      ? myDetail.id.substr(0, 8)
-      : myDetail.id;
+  textItem = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id;
   document.getElementById(textItem + "-li").remove();
   document.getElementById(textItem + "-price").remove();
 }
@@ -157,15 +147,9 @@ myDetails.forEach((detail) => {
   detail.addEventListener("mouseover", function (event) {
     myDetail = event.target;
     if (myDetail.id.substr(2, 6) == "bumper") {
-      bumperProectionL = document.getElementById(
-        myDetail.id.substr(0, 9) + "l"
-      );
-      bumperProectionF = document.getElementById(
-        myDetail.id.substr(0, 9) + "f"
-      );
-      bumperProectionR = document.getElementById(
-        myDetail.id.substr(0, 9) + "r"
-      );
+      bumperProectionL = document.getElementById(myDetail.id.substr(0, 9) + "l");
+      bumperProectionF = document.getElementById(myDetail.id.substr(0, 9) + "f");
+      bumperProectionR = document.getElementById(myDetail.id.substr(0, 9) + "r");
       if (myDetail.classList.contains("selected")) {
         bumperProectionL.classList.add("selected-hover");
         bumperProectionF.classList.add("selected-hover");
@@ -246,14 +230,11 @@ myDetails.forEach(function (detail) {
     }
     if (myDetail.id.substr(2, 6) != "bumper") {
       document.getElementById(myDetail.id + "-li").style.color = onHoverColor;
-      document.getElementById(myDetail.id + "-price").style.color =
-        onHoverColor;
+      document.getElementById(myDetail.id + "-price").style.color = onHoverColor;
       return;
     }
-    document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color =
-      onHoverColor;
-    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color =
-      onHoverColor;
+    document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = onHoverColor;
+    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = onHoverColor;
   });
 });
 
@@ -267,8 +248,7 @@ myDetails.forEach(function (detail) {
       return;
     }
     document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = "";
-    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color =
-      "";
+    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = "";
   });
 });
 
@@ -304,11 +284,7 @@ function changeCheckbox(myCheckbox) {
     for (i = 0; i < details.length; i++) {
       if (details[i][0] === myCheckbox.id.slice(0, -6)) {
         details[i][3] = myCheckbox.checked;
-        document.getElementById(
-          details[i][0] + "-price"
-        ).textContent = `${getPaintingPrice(
-          myCheckbox.id.slice(0, -6)
-        ).toLocaleString("ru")} р.`;
+        document.getElementById(details[i][0] + "-price").textContent = `${getPaintingPrice(myCheckbox.id.slice(0, -6)).toLocaleString("ru")} р.`;
         break;
       }
     }
@@ -322,9 +298,7 @@ function changeCheckbox(myCheckbox) {
       if (details[i][0] === elem) {
         details[i][3] = Number(fullRepair.checked);
         document.getElementById(elem + "-check").checked = fullRepair.checked;
-        document.getElementById(
-          elem + "-price"
-        ).textContent = `${getPaintingPrice(elem).toLocaleString("ru")} р.`;
+        document.getElementById(elem + "-price").textContent = `${getPaintingPrice(elem).toLocaleString("ru")} р.`;
       }
     }
   });
@@ -344,8 +318,7 @@ function countFullPrice(myArray) {
 // Счетчик выбранных деталей
 function setCounter() {
   if (myArray.length === 1) return `Выбрано: 1 деталь`;
-  if (myArray.length > 1 && myArray.length < 5)
-    return `Выбрано: ${myArray.length} детали`;
+  if (myArray.length > 1 && myArray.length < 5) return `Выбрано: ${myArray.length} детали`;
   return `Выбрано: ${myArray.length} деталей`;
 }
 
@@ -386,94 +359,60 @@ function checkFullRepair(myArray) {
 document
   .querySelector(".scheme-instruction")
   .addEventListener("mouseover", function (event) {
-    if (
-      event.target.id === "scheme-instruction__detail" ||
-      event.target.id === "scheme-instruction__detail-img"
-    ) {
+    if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
       document.getElementById("rf-fender").style.fill = "#ddd654";
-      document.getElementById("rf-fender").style.filter =
-        "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__detail").style.color =
-        "#ddd654";
+      document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px #ddd654)";
+      document.getElementById("scheme-instruction__detail").style.color = "#ddd654";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__add-repair" ||
-      event.target.id === "scheme-instruction__add-repair-img"
-    ) {
+    if (event.target.id === "scheme-instruction__add-repair" || event.target.id === "scheme-instruction__add-repair-img") {
       document.getElementById("full-price-label").style.color = "#ddd654";
       document.getElementById("slider round").style.backgroundColor = "#ddd654";
-      document.getElementById("full-price-label").style.filter =
-        "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__add-repair").style.color =
-        "#ddd654";
+      document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px #ddd654)";
+      document.getElementById("scheme-instruction__add-repair").style.color = "#ddd654";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__choose-all" ||
-      event.target.id === "scheme-instruction__choose-all-img"
-    ) {
+    if (event.target.id === "scheme-instruction__choose-all" || event.target.id === "scheme-instruction__choose-all-img") {
       checkAllDetailsBtn.style.color = "#ddd654";
       checkAllDetailsBtn.style.borderWidth = "2px";
       checkAllDetailsBtn.style.borderColor = "#ddd654";
       checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__choose-all").style.color =
-        "#ddd654";
+      document.getElementById("scheme-instruction__choose-all").style.color = "#ddd654";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__clear-all" ||
-      event.target.id === "scheme-instruction__clear-all-img"
-    ) {
+    if (event.target.id === "scheme-instruction__clear-all" || event.target.id === "scheme-instruction__clear-all-img") {
       clearAllDetailsBtn.style.color = "#ddd654";
       clearAllDetailsBtn.style.borderWidth = "2px";
       clearAllDetailsBtn.style.borderColor = "#ddd654";
       clearAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px #ddd654)";
-      document.getElementById("scheme-instruction__clear-all").style.color =
-        "#ddd654";
+      document.getElementById("scheme-instruction__clear-all").style.color = "#ddd654";
       return;
     }
   });
 
-document
-  .querySelector(".scheme-instruction")
-  .addEventListener("mouseout", function (event) {
-    if (
-      event.target.id === "scheme-instruction__detail" ||
-      event.target.id === "scheme-instruction__detail-img"
-    ) {
+document.querySelector(".scheme-instruction").addEventListener("mouseout", function (event) {
+    if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
       document.getElementById("rf-fender").style.fill = "";
       document.getElementById("rf-fender").style.filter = "";
       document.getElementById("scheme-instruction__detail").style.color = "";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__add-repair" ||
-      event.target.id === "scheme-instruction__add-repair-img"
-    ) {
+    if (event.target.id === "scheme-instruction__add-repair" || event.target.id === "scheme-instruction__add-repair-img") {
       document.getElementById("full-price-label").style.color = "";
       document.getElementById("slider round").style.backgroundColor = "";
       document.getElementById("full-price-label").style.filter = "";
-      document.getElementById("scheme-instruction__add-repair").style.color =
-        "";
+      document.getElementById("scheme-instruction__add-repair").style.color = "";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__choose-all" ||
-      event.target.id === "scheme-instruction__choose-all-img"
-    ) {
+    if (event.target.id === "scheme-instruction__choose-all" || event.target.id === "scheme-instruction__choose-all-img") {
       checkAllDetailsBtn.style.color = "";
       checkAllDetailsBtn.style.borderColor = "";
       checkAllDetailsBtn.style.borderWidth = "";
       checkAllDetailsBtn.style.filter = "";
-      document.getElementById("scheme-instruction__choose-all").style.color =
-        "";
+      document.getElementById("scheme-instruction__choose-all").style.color = "";
       return;
     }
-    if (
-      event.target.id === "scheme-instruction__clear-all" ||
-      event.target.id === "scheme-instruction__clear-all-img"
-    ) {
+    if (event.target.id === "scheme-instruction__clear-all" || event.target.id === "scheme-instruction__clear-all-img") {
       clearAllDetailsBtn.style.color = "";
       clearAllDetailsBtn.style.borderColor = "";
       clearAllDetailsBtn.style.borderWidth = "";
