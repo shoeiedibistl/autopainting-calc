@@ -35,6 +35,6 @@ Functional:
 8. Monitoring the main checkbox for the switching state of the remaining checkboxes (if all are selected, it automatically switches to the checked state, if not all are selected, it automatically switches to the state checked === false;
 9. Highlighting elements of the parts list when hovering over the corresponding part of the SVG image (car body part);
 10. Select all parts by clicking on the “Select entire body” button;
-11. Clear all parts and reset selected values when you click on the reset button.
-12. Counter of selected parts with variable word ending.
+11. Clear all parts and reset selected values when you click on the reset button;
+12. Counter of selected parts with variable word ending;
 13. A popup prompting you to sign up for checkup in service when the user is inside the block with a calculator for a specified time (10 sec in this example). If he leaves the block before the popup timer expires, the timer is canceled and the popup is not shown.
