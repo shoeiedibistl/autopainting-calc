@@ -1,6 +1,6 @@
 # autopainting-calc
 
-https://autoservise36.ru/autokraftwerk.html#calculator (по ссылке - без всплывающего окна)
+https://autoservise36.ru/autokraftwerk.html#calculator (по ссылке - без всплывающего окна, функция с всплывающим окном была добавлена позже размещения демо-версии на хостинге)
 
 <b>Онлайн-калькулятор для расчета стоимости кузовного ремонта</b>
 
