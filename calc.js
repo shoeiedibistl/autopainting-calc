@@ -507,7 +507,7 @@ const myCallback = (entries) => {
     if (entry.isIntersecting) {
       showPopup = setTimeout(() => {
         myPopup.classList.add("show");
-      }, 5 * 1000);
+      }, 10 * 1000);
     } else if (!entry.isIntersecting) {
       clearTimeout(showPopup);
     }
