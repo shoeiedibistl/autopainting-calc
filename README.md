@@ -14,7 +14,8 @@
 9.	Подсветка элементов списка деталей при наведении на соответствующую часть SVG-изображения (деталь кузова) для быстрого поиска нужной детали;
 10.	Выбор всех деталей при клике на кнопку «Выбрать весь кузов»;
 11.	Очистка всех деталей и сброс выбранных значений при клике на кнопку сброса.
-12.	Всплывающее окно с предложением записаться на осмотр при нахождении пользователя внутри блока с калькулятором в течение заданного времени (в примере - 5 сек). При покидании блока до истечения времени появления всплывающего окна таймер отменяется, и всплывающее окно не отображается.
+12.	Счетчик выбранных деталей с изменяемым окончанием.
+13.	Всплывающее окно с предложением записаться на осмотр при нахождении пользователя внутри блока с калькулятором в течение заданного времени (в примере - 5 сек). При покидании блока до истечения времени появления всплывающего окна таймер отменяется, и всплывающее окно не отображается.
 
 <b>Признаю, что в HTML документе слишком много SVG-кода, работаю над его сокращением. Можно подставить свой SVG-код, расставив классы и ID на соответствующие path'ы</b>
 
@@ -35,4 +36,5 @@ Functional:
 9. Highlighting elements of the parts list when hovering over the corresponding part of the SVG image (car body part);
 10. Select all parts by clicking on the “Select entire body” button;
 11. Clear all parts and reset selected values when you click on the reset button.
-12. A popup prompting you to sign up for checkup in service when the user is inside the block with a calculator for a specified time (5 sec in this example). If he leaves the block before the popup timer expires, the timer is canceled and the popup is not shown.
+12. Counter of selected parts with variable word ending.
+13. A popup prompting you to sign up for checkup in service when the user is inside the block with a calculator for a specified time (5 sec in this example). If he leaves the block before the popup timer expires, the timer is canceled and the popup is not shown.
