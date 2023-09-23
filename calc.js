@@ -258,7 +258,7 @@ function changeCheckbox(myCheckbox) {
     return;
   }
   myArray.forEach(function (elem) {
-    details.find((detail) => detail[0] == elem)[3] = Number(fullRepair.checked);
+    details.find((detail) => detail[0] == elem)[3] = +fullRepair.checked;
     document.getElementById(elem + "-check").checked = fullRepair.checked;
     document.getElementById(elem + "-price").textContent = `${getPaintingPrice(elem).toLocaleString("ru")} р.`;
   });
