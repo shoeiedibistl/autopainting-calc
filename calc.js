@@ -230,13 +230,9 @@ myDetails.forEach(function (detail) {
 
 // Функция для подсветки списка
 function setDetailColor(myDetail, myColor) {
-  if (myDetail.id.substr(2, 6) != "bumper") {
-    document.getElementById(myDetail.id + "-li").style.color = myColor;
-    document.getElementById(myDetail.id + "-price").style.color = myColor;
-    return;
-  }
-  document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = myColor;
-  document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = myColor;
+  const detailName = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id;
+  document.getElementById(detailName + "-li").style.color = myColor;
+  document.getElementById(detailName + "-price").style.color = myColor;
 }
 
 // Найти деталь в массиве
