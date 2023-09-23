@@ -4,12 +4,12 @@ const basicRepairPrice = 1500; // Базовая цена ремонта
 let myArray = [];
 let myDetail;
 let checkedCount = 0;
-let fullRepair = document.getElementById("full-body-addRepair-check");
-let fullRepairLabel = document.getElementById("full-price-label");
-let fullPriceLabel = document.getElementById("full-price");
+const fullRepair = document.getElementById("full-body-addRepair-check");
+const fullRepairLabel = document.getElementById("full-price-label");
+const fullPriceLabel = document.getElementById("full-price");
 const instruction = document.getElementById("calc-instruction");
-checkAllDetailsBtn = document.querySelector(".checkAllDetailsBtn");
-clearAllDetailsBtn = document.querySelector(".clearAllDetailsBtn");
+const checkAllDetailsBtn = document.querySelector(".checkAllDetailsBtn");
+const clearAllDetailsBtn = document.querySelector(".clearAllDetailsBtn");
 const onHoverColor = "#66bb6a";
 const lightingColor = "#ddd654";
 let bumperProectionL;
@@ -57,12 +57,9 @@ myDetails.forEach((detail) => {
   detail.addEventListener("click", function (event) {
     myDetail = event.target;
     if (myDetail.id.substr(2, 6) == "bumper") {
-      bumperProectionL = document.getElementById(myDetail.id.substr(0, 9) + "l");
-      bumperProectionF = document.getElementById(myDetail.id.substr(0, 9) + "f");
-      bumperProectionR = document.getElementById(myDetail.id.substr(0, 9) + "r");
-      bumperProectionL.classList.toggle("selected");
-      bumperProectionF.classList.toggle("selected");
-      bumperProectionR.classList.toggle("selected");
+      document.getElementById(myDetail.id.substr(0, 9) + "l").classList.toggle("selected");
+      document.getElementById(myDetail.id.substr(0, 9) + "f").classList.toggle("selected");
+      document.getElementById(myDetail.id.substr(0, 9) + "r").classList.toggle("selected");
     } else myDetail.classList.toggle("selected");
     addRemoveItem(myDetail);
     countFullPrice(myArray);
@@ -71,9 +68,10 @@ myDetails.forEach((detail) => {
   });
 });
 
+// Добавить/удалить деталь из массива выбранных элементов
 function addRemoveItem(myDetail) {
   if (myDetail.classList.contains("selected")) {
-    textItem = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id; 
+    textItem = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id;
     addItem(textItem);
     myArray.push(textItem);
     return;
@@ -84,6 +82,7 @@ function addRemoveItem(myDetail) {
   }
 }
 
+// Галочка "+ремонт" на весь список
 document.getElementById("full-body-addRepair-check").addEventListener("change", () => changeCheckbox(event.target));
 
 //Добавляем в список
@@ -131,6 +130,7 @@ function addItem(textItem) {
   itemPriceList.append(itemPrice);
 }
 
+// Удалить деталь
 function removeItem(myDetail) {
   textItem = myDetail.id.substr(2, 6) == "bumper" ? myDetail.id.substr(0, 8) : myDetail.id;
   document.getElementById(textItem + "-li").remove();
@@ -141,15 +141,10 @@ function removeItem(myDetail) {
 myDetails.forEach((detail) => {
   detail.addEventListener("mouseover", function (event) {
     myDetail = event.target;
-    if (myDetail.id.substr(2, 6) == "bumper") {
-      bumperProectionL = document.getElementById(myDetail.id.substr(0, 9) + "l");
-      bumperProectionF = document.getElementById(myDetail.id.substr(0, 9) + "f");
-      bumperProectionR = document.getElementById(myDetail.id.substr(0, 9) + "r");
-      if (myDetail.classList.contains("selected")) {
-        bumperProectionL.classList.add("selected-hover");
-        bumperProectionF.classList.add("selected-hover");
-        bumperProectionR.classList.add("selected-hover");
-      }
+    if (myDetail.id.substr(2, 6) == "bumper" && myDetail.classList.contains("selected")) {
+      document.getElementById(myDetail.id.substr(0, 9) + "l").classList.add("selected-hover");
+      document.getElementById(myDetail.id.substr(0, 9) + "f").classList.add("selected-hover");
+      document.getElementById(myDetail.id.substr(0, 9) + "r").classList.add("selected-hover");
     }
   });
 });
@@ -160,9 +155,9 @@ myDetails.forEach((detail) => {
   detail.addEventListener("mouseout", function (event) {
     myDetail = event.target;
     if (myDetail.id.substr(2, 6) == "bumper") {
-      bumperProectionL.classList.remove("selected-hover");
-      bumperProectionF.classList.remove("selected-hover");
-      bumperProectionR.classList.remove("selected-hover");
+      document.getElementById(myDetail.id.substr(0, 9) + "l").classList.remove("selected-hover");
+      document.getElementById(myDetail.id.substr(0, 9) + "f").classList.remove("selected-hover");
+      document.getElementById(myDetail.id.substr(0, 9) + "r").classList.remove("selected-hover");
     }
   });
 });
@@ -171,8 +166,7 @@ myDetails.forEach((detail) => {
 checkAllDetailsBtn.addEventListener("click", () => {
   for (i = 0; i < details.length; i++) {
     elem = details[i][0];
-
-    if (elem == "f-bumper" || elem == "r-bumper") {
+    if (elem.substr(2) == "bumper") {
       myDetail = document.getElementById(elem + "-f");
       if (!myDetail.classList.contains("selected")) {
         document.getElementById(elem + "-l").classList.add("selected");
@@ -205,9 +199,7 @@ clearAllDetailsBtn.addEventListener("click", () => {
       myDetail = document.getElementById(elem);
       myDetail.classList.remove("selected");
     }
-    details.forEach(function (elem) {
-      if (elem[3] == 1) elem[3] = 0;
-    });
+    details.map((elem) => (elem[3] = 0));
     removeItem(myDetail);
   });
   myArray = [];
@@ -223,13 +215,7 @@ myDetails.forEach(function (detail) {
       myDetail = "";
       return;
     }
-    if (myDetail.id.substr(2, 6) != "bumper") {
-      document.getElementById(myDetail.id + "-li").style.color = onHoverColor;
-      document.getElementById(myDetail.id + "-price").style.color = onHoverColor;
-      return;
-    }
-    document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = onHoverColor;
-    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = onHoverColor;
+    setDetailColor(myDetail, onHoverColor);
   });
 });
 
@@ -237,65 +223,48 @@ myDetails.forEach(function (detail) {
 myDetails.forEach(function (detail) {
   detail.addEventListener("mouseout", () => {
     if (!myDetail.classList.contains("selected")) return;
-    if (myDetail.id.substr(2, 6) != "bumper") {
-      document.getElementById(myDetail.id + "-li").style.color = "";
-      document.getElementById(myDetail.id + "-price").style.color = "";
-      return;
-    }
-    document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = "";
-    document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = "";
+    setDetailColor(myDetail, "");
   });
 });
 
+// Функция для подсветки списка
+function setDetailColor(myDetail, myColor) {
+  if (myDetail.id.substr(2, 6) != "bumper") {
+    document.getElementById(myDetail.id + "-li").style.color = myColor;
+    document.getElementById(myDetail.id + "-price").style.color = myColor;
+    return;
+  }
+  document.getElementById(myDetail.id.substr(0, 8) + "-li").style.color = myColor;
+  document.getElementById(myDetail.id.substr(0, 8) + "-price").style.color = myColor;
+}
+
 // Найти деталь в массиве
 function findDetail(myDetail) {
-  let detailName;
-  for (i = 0; i < details.length; i++) {
-    if (details[i][0] === myDetail) {
-      detailName = details[i][1];
-      break;
-    }
-  }
-  return detailName;
+  return details.find((detail) => detail[0] == myDetail)[1];
 }
 
 // Цена покраски детали
 function getPaintingPrice(myDetail) {
-  let paintingFactor;
-  let repairFactor;
-  for (i = 0; i < details.length; i++) {
-    if (details[i][0] === myDetail) {
-      paintingFactor = details[i][2];
-      repairFactor = details[i][3];
-      break;
-    }
-  }
+  let paintingFactor = details.find((detail) => detail[0] == myDetail)[2];
+  let repairFactor = details.find((detail) => detail[0] == myDetail)[3];
   return basicPaintingPrice * paintingFactor + basicRepairPrice * repairFactor;
 }
 
 //Галочка "+ремонт" в списке деталей
 function changeCheckbox(myCheckbox) {
   if (myCheckbox != fullRepair) {
-    for (i = 0; i < details.length; i++) {
-      if (details[i][0] === myCheckbox.id.slice(0, -6)) {
-        details[i][3] = myCheckbox.checked;
-        document.getElementById(details[i][0] + "-price").textContent = `${getPaintingPrice(myCheckbox.id.slice(0, -6)).toLocaleString("ru")} р.`;
-        break;
-      }
-    }
+    myDetail = details.find((detail) => detail[0] == myCheckbox.id.slice(0, -6));
+    myDetail[3] = myCheckbox.checked;
+    document.getElementById(myDetail[0] + "-price").textContent = `${getPaintingPrice(myCheckbox.id.slice(0, -6)).toLocaleString("ru")} р.`;
     checkFullRepair(myArray);
     countFullPrice(myArray);
     return;
   }
 
   myArray.forEach(function (elem) {
-    for (i = 0; i < details.length; i++) {
-      if (details[i][0] === elem) {
-        details[i][3] = Number(fullRepair.checked);
-        document.getElementById(elem + "-check").checked = fullRepair.checked;
-        document.getElementById(elem + "-price").textContent = `${getPaintingPrice(elem).toLocaleString("ru")} р.`;
-      }
-    }
+    details.find((detail) => detail[0] == elem)[3] = Number(fullRepair.checked);
+    document.getElementById(elem + "-check").checked = fullRepair.checked;
+    document.getElementById(elem + "-price").textContent = `${getPaintingPrice(elem).toLocaleString("ru")} р.`;
   });
   countFullPrice(myArray);
 }
@@ -304,7 +273,7 @@ function changeCheckbox(myCheckbox) {
 function countFullPrice(myArray) {
   let res = 0;
   myArray.forEach(function (elem) {
-    res = res + getPaintingPrice(elem);
+    res += getPaintingPrice(elem);
   });
   fullPriceLabel.textContent = `${res.toLocaleString("ru")} р.`;
   myCounter.innerHTML = setCounter();
@@ -340,88 +309,82 @@ function fullRepairActive(myArray) {
 //Проверяем галочку общий "+ ремонт" full-repair
 function checkFullRepair(myArray) {
   checkedCount = 0;
-  myArray.forEach(function (elem) {
-    for (i = 0; i < details.length; i++) {
-      if (details[i][0] === elem) {
-        checkedCount += details[i][3];
-        break;
-      }
-    }
-  });
+  myArray.forEach((elem) => (checkedCount += details.find((detail) => detail[0] == elem)[3]));
   fullRepair.checked = myArray.length === checkedCount;
 }
 
+// Подсветка инструкции при наведении
 document.querySelector(".scheme-instruction").addEventListener("mouseover", function (event) {
-    if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
-      document.getElementById("rf-fender").style.fill = lightingColor;
-      document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-      document.getElementById("scheme-instruction__detail").style.color = lightingColor;
-      return;
-    }
-    if (event.target.id === "scheme-instruction__add-repair" || event.target.id === "scheme-instruction__add-repair-img") {
-      document.getElementById("full-price-label").style.color = lightingColor;
-      document.getElementById("slider round").style.backgroundColor = lightingColor;
-      document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-      document.getElementById("scheme-instruction__add-repair").style.color = lightingColor;
-      return;
-    }
-    if (event.target.id === "scheme-instruction__choose-all" || event.target.id === "scheme-instruction__choose-all-img") {
-      checkAllDetailsBtn.style.color = lightingColor;
-      checkAllDetailsBtn.style.borderWidth = "2px";
-      checkAllDetailsBtn.style.borderColor = lightingColor;
-      checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-      document.getElementById("scheme-instruction__choose-all").style.color = lightingColor;
-      return;
-    }
-    if (event.target.id === "scheme-instruction__clear-all" || event.target.id === "scheme-instruction__clear-all-img") {
-      clearAllDetailsBtn.style.color = lightingColor;
-      clearAllDetailsBtn.style.borderWidth = "2px";
-      clearAllDetailsBtn.style.borderColor = lightingColor;
-      clearAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-      document.getElementById("scheme-instruction__clear-all").style.color = lightingColor;
-      return;
-    }
-  });
+  if (event.target.id.includes("scheme-instruction__detail")) {
+    document.getElementById("rf-fender").style.fill = lightingColor;
+    document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
+    document.getElementById("scheme-instruction__detail").style.color = lightingColor;
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__add-repair")) {
+    document.getElementById("full-price-label").style.color = lightingColor;
+    document.getElementById("slider round").style.backgroundColor = lightingColor;
+    document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
+    document.getElementById("scheme-instruction__add-repair").style.color = lightingColor;
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__choose-all")) {
+    checkAllDetailsBtn.style.color = lightingColor;
+    checkAllDetailsBtn.style.borderWidth = "2px";
+    checkAllDetailsBtn.style.borderColor = lightingColor;
+    checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
+    document.getElementById("scheme-instruction__choose-all").style.color = lightingColor;
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__clear-all")) {
+    clearAllDetailsBtn.style.color = lightingColor;
+    clearAllDetailsBtn.style.borderWidth = "2px";
+    clearAllDetailsBtn.style.borderColor = lightingColor;
+    clearAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
+    document.getElementById("scheme-instruction__clear-all").style.color = lightingColor;
+    return;
+  }
+});
 
+// Убрать подсветку инструкции
 document.querySelector(".scheme-instruction").addEventListener("mouseout", function (event) {
-    if (event.target.id === "scheme-instruction__detail" || event.target.id === "scheme-instruction__detail-img") {
-      document.getElementById("rf-fender").style.fill = "";
-      document.getElementById("rf-fender").style.filter = "";
-      document.getElementById("scheme-instruction__detail").style.color = "";
-      return;
-    }
-    if (event.target.id === "scheme-instruction__add-repair" || event.target.id === "scheme-instruction__add-repair-img") {
-      document.getElementById("full-price-label").style.color = "";
-      document.getElementById("slider round").style.backgroundColor = "";
-      document.getElementById("full-price-label").style.filter = "";
-      document.getElementById("scheme-instruction__add-repair").style.color = "";
-      return;
-    }
-    if (event.target.id === "scheme-instruction__choose-all" || event.target.id === "scheme-instruction__choose-all-img") {
-      checkAllDetailsBtn.style.color = "";
-      checkAllDetailsBtn.style.borderColor = "";
-      checkAllDetailsBtn.style.borderWidth = "";
-      checkAllDetailsBtn.style.filter = "";
-      document.getElementById("scheme-instruction__choose-all").style.color = "";
-      return;
-    }
-    if (event.target.id === "scheme-instruction__clear-all" || event.target.id === "scheme-instruction__clear-all-img") {
-      clearAllDetailsBtn.style.color = "";
-      clearAllDetailsBtn.style.borderColor = "";
-      clearAllDetailsBtn.style.borderWidth = "";
-      clearAllDetailsBtn.style.filter = "";
-      document.getElementById("scheme-instruction__clear-all").style.color = "";
-      return;
-    }
-  });
+  if (event.target.id.includes("scheme-instruction__detail")) {
+    document.getElementById("rf-fender").style.fill = "";
+    document.getElementById("rf-fender").style.filter = "";
+    document.getElementById("scheme-instruction__detail").style.color = "";
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__add-repair")) {
+    document.getElementById("full-price-label").style.color = "";
+    document.getElementById("slider round").style.backgroundColor = "";
+    document.getElementById("full-price-label").style.filter = "";
+    document.getElementById("scheme-instruction__add-repair").style.color = "";
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__choose-all")) {
+    checkAllDetailsBtn.style.color = "";
+    checkAllDetailsBtn.style.borderColor = "";
+    checkAllDetailsBtn.style.borderWidth = "";
+    checkAllDetailsBtn.style.filter = "";
+    document.getElementById("scheme-instruction__choose-all").style.color = "";
+    return;
+  }
+  if (event.target.id.includes("scheme-instruction__clear-all")) {
+    clearAllDetailsBtn.style.color = "";
+    clearAllDetailsBtn.style.borderColor = "";
+    clearAllDetailsBtn.style.borderWidth = "";
+    clearAllDetailsBtn.style.filter = "";
+    document.getElementById("scheme-instruction__clear-all").style.color = "";
+    return;
+  }
+});
 
+// Всплывающее окно
 const myPopup = document.getElementById("calc-banner");
 
 const closePopupBtn = document.querySelectorAll(".popup__close");
 
-closePopupBtn.forEach((element) =>
-  element.addEventListener("click", () => myPopup.classList.remove("show"))
-);
+closePopupBtn.forEach((element) => element.addEventListener("click", () => myPopup.classList.remove("show")));
 
 const myOptions = {
   rootMargin: "0px 0px 0px 0px",
@@ -435,7 +398,7 @@ const myCallback = (entries) => {
     if (entry.isIntersecting) {
       showPopup = setTimeout(() => {
         myPopup.classList.add("show");
-      }, 10 * 1000);
+      }, 1000 * 1000);
     } else if (!entry.isIntersecting) {
       clearTimeout(showPopup);
     }
