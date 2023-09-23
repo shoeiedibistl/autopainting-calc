@@ -27,6 +27,7 @@ let itemLabel;
 let itemSpan;
 const myCounter = document.querySelector(".counter");
 const myDetails = document.querySelectorAll(".calc-detail");
+const myLightingFilter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
 
 /*  Массив из деталей и их параметров для расчета и выдачи результата
 Структура: 
@@ -260,7 +261,6 @@ function changeCheckbox(myCheckbox) {
     countFullPrice(myArray);
     return;
   }
-
   myArray.forEach(function (elem) {
     details.find((detail) => detail[0] == elem)[3] = Number(fullRepair.checked);
     document.getElementById(elem + "-check").checked = fullRepair.checked;
@@ -313,35 +313,46 @@ function checkFullRepair(myArray) {
   fullRepair.checked = myArray.length === checkedCount;
 }
 
+// Подсветка инструкции п.1
+function instructionLightingElement(element, myColor, lightingFilter) {
+  document.getElementById(element).style.fill = myColor;
+  document.getElementById(element).style.filter = lightingFilter;
+  document.getElementById("scheme-instruction__detail").style.color = myColor;
+}
+
+// Подсветка инструкции п.2
+function instructionLightingAddRepair(myColor, lightingFilter) {
+  document.getElementById("full-price-label").style.color = myColor;
+  document.getElementById("slider round").style.backgroundColor = myColor;
+  document.getElementById("full-price-label").style.filter = lightingFilter;
+  document.getElementById("scheme-instruction__add-repair").style.color = myColor;
+}
+
+// Подсветка инструкции п.3-4
+function instructionLightingButton(btnClass, paragraphID, myColor, borderWidth, lightingFilter) {
+  document.querySelector(btnClass).style.color = myColor;
+  document.querySelector(btnClass).style.borderWidth = borderWidth;
+  document.querySelector(btnClass).style.borderColor = myColor;
+  document.querySelector(btnClass).style.filter = lightingFilter;
+  document.getElementById(paragraphID).style.color = myColor;
+}
+
 // Подсветка инструкции при наведении
 document.querySelector(".scheme-instruction").addEventListener("mouseover", function (event) {
   if (event.target.id.includes("scheme-instruction__detail")) {
-    document.getElementById("rf-fender").style.fill = lightingColor;
-    document.getElementById("rf-fender").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-    document.getElementById("scheme-instruction__detail").style.color = lightingColor;
+    instructionLightingElement("rf-fender", lightingColor, myLightingFilter);
     return;
   }
   if (event.target.id.includes("scheme-instruction__add-repair")) {
-    document.getElementById("full-price-label").style.color = lightingColor;
-    document.getElementById("slider round").style.backgroundColor = lightingColor;
-    document.getElementById("full-price-label").style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-    document.getElementById("scheme-instruction__add-repair").style.color = lightingColor;
+    instructionLightingAddRepair(lightingColor, myLightingFilter);
     return;
   }
   if (event.target.id.includes("scheme-instruction__choose-all")) {
-    checkAllDetailsBtn.style.color = lightingColor;
-    checkAllDetailsBtn.style.borderWidth = "2px";
-    checkAllDetailsBtn.style.borderColor = lightingColor;
-    checkAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-    document.getElementById("scheme-instruction__choose-all").style.color = lightingColor;
+    instructionLightingButton(".checkAllDetailsBtn", "scheme-instruction__choose-all", lightingColor, "2px", myLightingFilter);
     return;
   }
   if (event.target.id.includes("scheme-instruction__clear-all")) {
-    clearAllDetailsBtn.style.color = lightingColor;
-    clearAllDetailsBtn.style.borderWidth = "2px";
-    clearAllDetailsBtn.style.borderColor = lightingColor;
-    clearAllDetailsBtn.style.filter = "drop-shadow(0px 0px 16px " + lightingColor.slice(0) + ")";
-    document.getElementById("scheme-instruction__clear-all").style.color = lightingColor;
+    instructionLightingButton(".clearAllDetailsBtn", "scheme-instruction__clear-all", lightingColor, "2px", myLightingFilter);
     return;
   }
 });
@@ -349,56 +360,40 @@ document.querySelector(".scheme-instruction").addEventListener("mouseover", func
 // Убрать подсветку инструкции
 document.querySelector(".scheme-instruction").addEventListener("mouseout", function (event) {
   if (event.target.id.includes("scheme-instruction__detail")) {
-    document.getElementById("rf-fender").style.fill = "";
-    document.getElementById("rf-fender").style.filter = "";
-    document.getElementById("scheme-instruction__detail").style.color = "";
+    instructionLightingElement("rf-fender", "", "");
     return;
   }
   if (event.target.id.includes("scheme-instruction__add-repair")) {
-    document.getElementById("full-price-label").style.color = "";
-    document.getElementById("slider round").style.backgroundColor = "";
-    document.getElementById("full-price-label").style.filter = "";
-    document.getElementById("scheme-instruction__add-repair").style.color = "";
+    instructionLightingAddRepair("", "");
     return;
   }
   if (event.target.id.includes("scheme-instruction__choose-all")) {
-    checkAllDetailsBtn.style.color = "";
-    checkAllDetailsBtn.style.borderColor = "";
-    checkAllDetailsBtn.style.borderWidth = "";
-    checkAllDetailsBtn.style.filter = "";
-    document.getElementById("scheme-instruction__choose-all").style.color = "";
+    instructionLightingButton(".checkAllDetailsBtn", "scheme-instruction__choose-all", "", "", "");
     return;
   }
   if (event.target.id.includes("scheme-instruction__clear-all")) {
-    clearAllDetailsBtn.style.color = "";
-    clearAllDetailsBtn.style.borderColor = "";
-    clearAllDetailsBtn.style.borderWidth = "";
-    clearAllDetailsBtn.style.filter = "";
-    document.getElementById("scheme-instruction__clear-all").style.color = "";
+    instructionLightingButton(".clearAllDetailsBtn", "scheme-instruction__clear-all", "", "", "");
     return;
   }
 });
 
 // Всплывающее окно
 const myPopup = document.getElementById("calc-banner");
-
 const closePopupBtn = document.querySelectorAll(".popup__close");
-
-closePopupBtn.forEach((element) => element.addEventListener("click", () => myPopup.classList.remove("show")));
-
+let showPopup;
 const myOptions = {
   rootMargin: "0px 0px 0px 0px",
   threshold: 0.5,
 };
 
-let showPopup;
+closePopupBtn.forEach((element) => element.addEventListener("click", () => myPopup.classList.remove("show")));
 
 const myCallback = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       showPopup = setTimeout(() => {
         myPopup.classList.add("show");
-      }, 1000 * 1000);
+      }, 10 * 1000);
     } else if (!entry.isIntersecting) {
       clearTimeout(showPopup);
     }
