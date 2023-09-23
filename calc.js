@@ -268,9 +268,7 @@ function changeCheckbox(myCheckbox) {
 //Пересчет общей цены ремонта
 function countFullPrice(myArray) {
   let res = 0;
-  myArray.forEach(function (elem) {
-    res += getPaintingPrice(elem);
-  });
+  myArray.map((elem) => (res += getPaintingPrice(elem)));
   fullPriceLabel.textContent = `${res.toLocaleString("ru")} р.`;
   myCounter.innerHTML = setCounter();
 }
