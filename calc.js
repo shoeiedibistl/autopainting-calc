@@ -88,6 +88,7 @@ document.getElementById("full-body-addRepair-check").addEventListener("change", 
 
 //Добавляем в список
 function addItem(textItem) {
+  // Функцию переписываю для сокращения кода с 25 строк до 7 по принципу клонирования блока-образца (здесь пока закомментировано). Прототип на 25 строк тоже рабочий
   // let clone = mySample.cloneNode(true);
   // clone.children[0].children[0].textContent = "Крыша";
   // clone.children[0].children[1].children[0].setAttribute("for", "roof-addRepair-check");
