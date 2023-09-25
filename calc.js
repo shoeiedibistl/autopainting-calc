@@ -88,6 +88,18 @@ document.getElementById("full-body-addRepair-check").addEventListener("change", 
 
 //Добавляем в список
 function addItem(textItem) {
+  // let clone = mySample.cloneNode(true);
+  // clone.children[0].children[0].textContent = "Крыша";
+  // clone.children[0].children[1].children[0].setAttribute("for", "roof-addRepair-check");
+  // clone.children[0].children[1].children[0].children[0].id = "roof-addRepair-check";
+  // clone.children[1].textContent = 15000;
+  // clone.classList.remove("invisible");
+  // myParent.append(clone);
+
+
+
+
+  
   itemCheckbox = document.createElement("input");
   itemCheckbox.type = "Checkbox";
   itemCheckbox.id = textItem + "-check";
