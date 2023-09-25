@@ -92,6 +92,7 @@ function addItem(textItem) {
   // принципу клонирования блока-образца (здесь пока закомментировано) + 
   // соответствующие изменения в разметке страницы.
   // Прототип на 25 строк тоже рабочий
+  
   // let clone = mySample.cloneNode(true);
   // clone.children[0].children[0].textContent = "Крыша";
   // clone.children[0].children[1].children[0].setAttribute("for", "roof-addRepair-check");
